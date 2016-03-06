@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.io.BufferedReader;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView videoView;
 
+    EditText ipaddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        ipaddress = (EditText) findViewById(R.id.editText);
         mButton = (Button) findViewById(R.id.button);
         mButton2 = (Button) findViewById(R.id.button2);
         mButton3 = (Button) findViewById(R.id.button3);
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new Thread(new Runnable() {
                     public void run() {
-                        mClient = new Client("192.168.1.98");
+                        mClient = new Client(ipaddress.getText().toString());
                         mClient.setupButtonListener();
                     }
                 }).start();
